@@ -1,17 +1,11 @@
-class Foo {
-  sayThis () {
-    console.log(this); // 这里的 `this` 指向谁？
+var reverseWords = function(s) {
+  let list = [], str = '', resStr = ''
+  s += ' '   // 加个空格 防止最后一个不是空格的情况, 确保循环到最后能把最后一个加到数组中, 省得再在下面判断
+  for (let i = 0; i < s.length; i++){
+    s[i] !== ' ' ? str += s[i] : str && (list.push(str), (str = ''));
   }
-
- exec (cb) {
-   cb.bind(this)();
- }
-
- render () {
-   this.exec(this.sayThis);
- }
-}
-
-var foo = new Foo();
-foo.render(); // 输出结果是什么？
-
+  for(let j = list.length - 1; j >= 0; j--){
+    resStr += j !== 0 ? list[j] + ' ' : list[j]
+  }
+  return resStr
+};
